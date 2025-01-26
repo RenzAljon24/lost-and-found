@@ -9,7 +9,7 @@ export default async function CreateReport(props: { searchParams: Promise<Messag
   const searchParams = await props.searchParams;
 
   return (
-    <Card className="max-w-lg mx-auto p-6 shadow-lg rounded-lg">
+    <Card className="max-w-2xl mx-auto p-6 shadow-lg rounded-lg">
       <CardHeader>
         <CardTitle className="text-2xl font-medium">Create a New Report</CardTitle>
       </CardHeader>

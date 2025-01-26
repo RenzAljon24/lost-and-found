@@ -1,8 +1,8 @@
-import { signOutAction } from "@/app/actions";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { createClient } from "@/utils/supabase/server";
-
+import { UserPen } from "lucide-react";
 export default async function AuthButton() {
   const supabase = await createClient();
 
@@ -13,14 +13,11 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-       {user.user_metadata.first_name}!
-      <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
-          Sign out
-        </Button>
-      </form>
+        <Link href="/profile">
+          <UserPen className="hover:scale-75 duration-300 ease-in-out" size={24} />
+        </Link>
         <Button variant={"default"}>
-          <Link href="/protected">Create a new report</Link>
+          <Link href="/create-report">Create a new report</Link>
         </Button>
 
     </div>
