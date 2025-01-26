@@ -1,38 +1,67 @@
-import FetchDataSteps from "@/components/tutorial/fetch-data-steps";
-import { createClient } from "@/utils/supabase/server";
-import { InfoIcon } from "lucide-react";
-import { redirect } from "next/navigation";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { createReportAction } from "../actions";
+import { FormMessage, Message } from "@/components/form-message";
+import { SubmitButton } from "@/components/submit-button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export default async function ProtectedPage() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
+export default async function CreateReport(props: { searchParams: Promise<Message> }) {
+  const searchParams = await props.searchParams;
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
-        <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a protected page that you can only see as an authenticated
-          user
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </div>
-      <div>
-        <h2 className="font-bold text-2xl mb-4">Next steps</h2>
-        <FetchDataSteps />
-      </div>
-    </div>
+    <Card className="max-w-lg mx-auto p-6 shadow-lg rounded-lg">
+      <CardHeader>
+        <CardTitle className="text-2xl font-medium">Create a New Report</CardTitle>
+      </CardHeader>
+
+      <CardContent>
+        <form className="flex flex-col gap-4" action={createReportAction}>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="type">Type of Report</Label>
+            <select
+              name="type"
+              className="border rounded-md p-2 text-foreground"
+              required
+            >
+              <option value="missing">Missing</option>
+              <option value="found">Found</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="description">Description</Label>
+            <textarea
+              name="description"
+              placeholder="Provide a description of the pet"
+              className="border rounded-md p-2 text-foreground"
+              rows={4}
+              required
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="location">Location</Label>
+            <Input name="location" placeholder="Enter location" required />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="photo_url">Photo URL (Optional)</Label>
+            <Input
+              name="photo_url"
+              placeholder="https://example.com/photo.jpg"
+              type="url"
+            />
+          </div>
+
+          <CardFooter className="flex justify-end mt-4">
+            <SubmitButton pendingText="Submitting..." formAction={createReportAction}>
+              Submit Report
+            </SubmitButton>
+          </CardFooter>
+
+          <FormMessage message={searchParams} />
+        </form>
+      </CardContent>
+    </Card>
   );
 }
