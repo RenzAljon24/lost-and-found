@@ -7,8 +7,6 @@ import Link from "next/link";
 import CommentSection from "@/components/Comments";
 import { getCommentsByReportIdAction } from "@/app/actions";
 
-type tParams = Promise<{ id: string }>;
-
 export default async function ReportPage({params}: {params: Promise<{ id: string }>}) {
   const supabase = await createClient();
   const { id } = await params;
