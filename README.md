@@ -7,7 +7,7 @@
 1. **Clone the Repository**  
    ```bash  
    git clone https://github.com/RenzAljon24/lost-and-found.git
-   cd <lost-and-found>  
+   cd lost-and-found  
    ```  
 
 2. **Install Dependencies**  
