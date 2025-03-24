@@ -29,7 +29,7 @@ export default async function FoundPetsPage() {
               </CardHeader>
               <CardContent>
                 <p className="font-medium">Location: {pet.location}</p>
-                <p className="text-sm text-gray-500">{pet.description}</p>
+                <p className="text-sm text-gray-400">{pet.description}</p>
 
                 {pet.photo_url && (
                   <div className="mt-4">

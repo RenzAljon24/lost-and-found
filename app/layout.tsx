@@ -56,12 +56,11 @@ export default function RootLayout({
                 <p>
                   Developed by{" "}
                   <a
-                    href="https://www.renzcruz.dev/"
                     target="_blank"
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    renzcruz.dev
+                    Eliah and Renz
                   </a>
                 </p>
                 <ThemeSwitcher />

@@ -26,7 +26,7 @@ export default async function LostPetsPage() {
             <Card className="shadow-lg rounded-lg cursor-pointer hover:shadow-2xl transition">
               <CardContent>
                 <p className="font-medium mt-4">Location: {pet.location}</p>
-                <p className="text-sm text-gray-500">{pet.description}</p>
+                <p className="text-sm text-gray-400">{pet.description}</p>
 
                 {pet.photo_url && (
                   <div className="mt-4">
@@ -41,7 +41,7 @@ export default async function LostPetsPage() {
 
               <CardFooter className="flex items-center justify-between mt-4">
                 <Badge variant="outline" className="text-sm">
-                  Missing
+                  Lost
                 </Badge>
               </CardFooter>
             </Card>
