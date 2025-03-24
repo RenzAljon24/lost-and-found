@@ -46,7 +46,7 @@ export default async function ReportPage({params}: {params: Promise<{ id: string
               <AvatarFallback>{user.email[0]}</AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle className="text-xl font-semibold">{user.display_name}</CardTitle>
+              <CardTitle className="text-xl font-semibold text-black">{user.display_name}</CardTitle>
               <CardDescription className="text-sm text-gray-600">
                 Reported by {user.email}
               </CardDescription>
@@ -60,19 +60,19 @@ export default async function ReportPage({params}: {params: Promise<{ id: string
             variant={report.type === "missing" ? "destructive" : "default"}
             className="mb-4"
           >
-            {report.type === "missing" ? "Missing" : "Found"}
+            {report.type === "missing" ? "Lost" : "Found"}
           </Badge>
 
           {/* Description */}
           <div className="mb-6">
             <h2 className="text-lg font-semibold mb-2">Description</h2>
-            <p className="text-gray-700">{report.description}</p>
+            <p className="text-gray-200">{report.description}</p>
           </div>
 
           {/* Location */}
           <div className="mb-6">
             <h2 className="text-lg font-semibold mb-2">Location</h2>
-            <p className="text-gray-700">{report.location}</p>
+            <p className="text-gray-200">{report.location}</p>
           </div>
 
           {/* Photo */}
@@ -93,8 +93,8 @@ export default async function ReportPage({params}: {params: Promise<{ id: string
             <p className="text-sm text-gray-600">
               Last updated: {new Date(report.created_at).toLocaleDateString()}
             </p>
-            <Badge variant="outline" className="text-sm">
-              {report.type === "missing" ? "Missing" : "Found"}
+            <Badge variant="outline" className="text-sm text-black">
+              {report.type === "missing" ? "Lost" : "Found"}
             </Badge>
           </div>
         </CardFooter>
